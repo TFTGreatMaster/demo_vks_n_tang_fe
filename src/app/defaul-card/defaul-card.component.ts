@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {IBreadCrumbItem} from "../core/interface/index.interface";
 
 export interface IDataProps {
   id: number;
@@ -23,6 +22,10 @@ export class DefaulCardComponent {
   @Input() props!: IDataProps;
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() onClickItem: EventEmitter<any> = new EventEmitter<any>()
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() onDeleteItem: EventEmitter<number> = new EventEmitter<number>()
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() onUpdateItem: EventEmitter<ISelectItem> = new EventEmitter<ISelectItem>()
 
   isUpdateModal: boolean = false;
   isDeleteModal: boolean = false;
@@ -48,7 +51,7 @@ export class DefaulCardComponent {
 
   onDeleteConfirm() {
     this.isUpdateModal = false;
-    //api
+    this.onDeleteItem.emit(this.selectItem.id)
   }
 
   onShowUpdateModal(data: ISelectItem) {
@@ -60,7 +63,7 @@ export class DefaulCardComponent {
 
   onUpdateConfirm() {
     this.isUpdateModal = false;
-    //api
+    this.onUpdateItem.emit(this.selectItem)
   }
 
   onCancelModal() {
@@ -74,7 +77,6 @@ export class DefaulCardComponent {
     this.selectItem.id = data.id;
     this.selectItem.name = data.name;
     this.selectItem.type = data.type;
-    console.log("🚀 ~ DefaulCardComponent ~ onShowMoveModal ~ data:", data)
   }
 
   onClickCard({documentId, documentName}: any) {

@@ -13,6 +13,7 @@
       <p-button label="Upload File" icon="pi pi-file-plus" iconPos="right" [style]="{'margin': '20px' }"/>
       <p-fileUpload mode="basic" chooseLabel="Choose" chooseIcon="pi pi-upload"
                     url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="100000000"
+                    [auto]="true"
                     (onUpload)="onUpload($event)"/>
     </div>
     <p-divider align="left" class="home-divider">
@@ -23,6 +24,8 @@
         *ngFor="let item of folderData"
         [props]="item"
         (onClickItem)="handleGetDocuments($event)"
+        (onDeleteItem)="onDeleteItem($event)"
+        (onUpdateItem)="onUpdateItem($event)"
       ></app-defaul-card>
     </div>
     <p-divider align="left" class="home-divider">

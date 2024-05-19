@@ -1,7 +1,7 @@
 <p-card [subheader]="showName()" [style]="{ width: '260px', margin: '10px' }">
   <div class="card-content" *ngIf="props.type === 'folder'"
-       (click)="onClickCard({documentId: props.id, documentName: props.name})">
-    <span>{{ props.name }}</span>
+  >
+    <span (click)="onClickCard({documentId: props.id, documentName: props.name})">{{ props.name }}</span>
     <div>
       <i class="pi pi-cog" style="font-size: 1.5rem; padding-right:8px;"
          (click)="onShowUpdateModal({id: props.id, name: props.name, type: props.type})"></i>
