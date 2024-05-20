@@ -32,17 +32,23 @@
       <b>File</b>
     </p-divider>
     <div class="card-container">
-      <app-defaul-card *ngFor="let item of fileData" [props]="item"></app-defaul-card>
+      <app-defaul-card
+        *ngFor="let item of fileData"
+        [props]="item"
+        (onDeleteItem)="onDeleteItem($event)"
+        (onUpdateItem)="onUpdateItem($event)"
+      ></app-defaul-card>
     </div>
   </div>
   <p-dialog header="Create File" [modal]="true" [(visible)]="isCreateModal" [style]="{ width: '25rem' }">
     <div class="flex align-items-center gap-3 mb-3">
       <label for="name" class="font-semibold w-6rem">Name</label>
-      <input pInputText class="flex-auto" autocomplete="off" [ngModel]="folderCreate.name"/>
+      <input pInputText class="flex-auto" autocomplete="off" [(ngModel)]="folderCreate.name"/>
     </div>
     <div class="flex justify-content-end gap-2">
       <p-button label="Cancel" severity="secondary" (click)="onCancelModal()"/>
       <p-button label="Create" (click)="onCreateConfirm()"/>
     </div>
   </p-dialog>
+  <app-move></app-move>
 </div>
